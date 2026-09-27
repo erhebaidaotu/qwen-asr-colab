@@ -1,5 +1,7 @@
 # QwenASR-Colab
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jRW4pDSLSK7JDNrgbfPi7sKHVzlYZ4y8)
+
 在免費 Colab（T4）上跑 **Qwen3-ASR-1.7B**：上傳音檔 → 轉錄 → 下載 SRT。不用本機 GPU，不做量化（fp16）。
 
 ## English TL;DR
@@ -60,7 +62,7 @@ T4 不支援 bf16。用 `torch.cuda.is_bf16_supported()` 判斷，支援才用 b
 ## 網路行為
 
 - pip 安裝套件（PyPI）
-- 從 Hugging Face 下載模型權重（`Qwen/Qwen3-ASR-1.7B`、`Qwen/Qwen3-ForcedAligner-0.6B`，共約 4.7GB）
+- 從 Hugging Face 下載模型權重（主模型 `Qwen/Qwen3-ASR-1.7B` 約 4.7GB；Forced Aligner `Qwen/Qwen3-ForcedAligner-0.6B` 另需約 1.2GB）
 - 不上傳任何資料到任何地方；轉錄全在 Colab VM 本機完成
 
 ## 授權與維護狀態
