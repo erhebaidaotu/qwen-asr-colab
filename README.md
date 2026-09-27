@@ -1,6 +1,6 @@
 # QwenASR-Colab
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jRW4pDSLSK7JDNrgbfPi7sKHVzlYZ4y8)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/erhebaidaotu/qwen-asr-colab/blob/main/QwenASR-Colab.ipynb)
 
 在免費 Colab（T4）上跑 **Qwen3-ASR-1.7B**：上傳音檔 → 轉錄 → 下載 SRT。不用本機 GPU，不做量化（fp16）。
 
