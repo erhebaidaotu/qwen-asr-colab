@@ -41,7 +41,7 @@ Run Qwen3-ASR-1.7B on free Colab (T4): upload audio → transcribe → download 
 
 官方 config 的 `rope_scaling` 是 `None`，但 vendored 的 modeling 直接 `.get()`，炸 `AttributeError: 'NoneType' object has no attribute 'get'`。
 
-**Workaround**（notebook 內已含）：monkeypatch `Qwen3ASRThinkerTextRotaryEmbedding.__init__`，在 `None` 時補預設值 `{"rope_type": "default", "mrope_section": [24, 20, 20]}`。
+**Workaround**（notebook 內已含）：建模型前直接把 `config.rope_scaling` 補上預設值 `{"rope_type": "default", "mrope_section": [24, 20, 20]}`。注意：舊版曾用 monkeypatch 去包 `__init__`，但那格 cell 重跑第二次會把 patch 疊在 patch 上、造成 `RecursionError`（2026-09-27 實測踩到），已改為冪等的寫法。
 
 ### 4. `load_state_dict` / `safetensors.load_model` 載不進 meta 模型
 
