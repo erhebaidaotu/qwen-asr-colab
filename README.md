@@ -59,6 +59,12 @@ Run Qwen3-ASR-1.7B on free Colab (T4): upload audio → transcribe → download 
 
 T4 不支援 bf16。用 `torch.cuda.is_bf16_supported()` 判斷，支援才用 bf16，否則 fp16。不要假設「非 T4 就支援 bf16」。
 
+### 7. 微調版 checkpoint 會省略 tied weights
+
+`jaykwok/Qwen3-ASR-1.7B-JA-Anime-Galgame`（動漫特化版）的 `model.safetensors` 裡沒有 `thinker.lm_head.weight`——微調存檔時 safetensors 把綁定的權重去重了（lm_head 跟 `embed_tokens` 共用）。`from_pretrained` 會自動 tie 回去，但手動逐 tensor 載入繞過了那個邏輯，斷言會炸「有權重沒載到」。
+
+**解法**：載完後手動綁回去（notebook 內已含）：`thinker.lm_head.weight = thinker.model.embed_tokens.weight`。注意動漫版要用**無 `-hf`** 的 repo（`jaykwok/Qwen3-ASR-1.7B-JA-Anime-Galgame`），`-hf` 版是 `model.*` 鍵名，此 loader 讀不了（見坑 #2）。
+
 ## 網路行為
 
 - pip 安裝套件（PyPI）
